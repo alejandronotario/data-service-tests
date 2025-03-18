@@ -191,10 +191,10 @@ data/
 
 .envrc
 
-
-
 # Ignore CLI configuration files
 
 .terraformrc
 
 terraform.rc
+
+.terraform/
