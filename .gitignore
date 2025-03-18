@@ -197,4 +197,4 @@ data/
 
 terraform.rc
 
-.terraform/
+infra/terraform/.terraform/
