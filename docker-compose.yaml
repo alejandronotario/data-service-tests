@@ -1,0 +1,16 @@
+services:
+  localstack:
+    image: localstack/localstack
+    environment:
+      - SERVICES=dynamodb, sts
+    ports:
+      - "4566:4566"
+
+  app:
+    build: ./app
+    depends_on:
+      - localstack
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
