@@ -29,6 +29,10 @@ jobs:
           pip install -r src/requirements.txt
           pip install pytest 
 
+      - name: Set up Python environment
+        run: |
+          export PYTHONPATH="${PYTHONPATH}:./src"
+        
       - name: Run tests
         run: pytest tests/
 
