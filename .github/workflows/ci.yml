@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      # Optional: If your tests need LocalStack, you can start it via Docker Compose
+      - name: Start LocalStack
+        run: docker-compose up -d localstack
+
+      - name: Run tests
+        run: pytest --maxfail=1 --disable-warnings -q
+
+      # Optional: Stop LocalStack after tests complete
+      - name: Stop LocalStack
+        if: always()
+        run: docker-compose down

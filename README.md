@@ -2,7 +2,7 @@
 
 This document outlines the steps to set up and test the data service for the project using LocalStack, Terraform, and FastAPI.
 
-> **Note:** LocalStack is used to emulate AWS services locally. The Terraform configuration below uses custom endpoints for S3, DynamoDB, and STS.
+> **Note:** LocalStack is used to emulate AWS services locally. The Terraform configuration below uses custom endpoints for DynamoDB, and STS.
 
 ---
 
