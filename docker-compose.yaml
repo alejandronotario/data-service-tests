@@ -7,7 +7,7 @@ services:
       - "4566:4566"
 
   app:
-    build: ./app
+    build: ./src
     depends_on:
       - localstack
     environment:
