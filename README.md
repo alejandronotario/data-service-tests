@@ -23,7 +23,7 @@ This document outlines the steps to set up and test the data service for the pro
 project-root/
 │
 ├── data/
-│   └── test_data.json          # Test data file (a simple JSON file, can be extracted from a GeoJSON)
+│   └── fire_data.json          # Test data file (a simple JSON file, can be extracted from a GeoJSON)
 │
 ├── infra/
 │   └── terraform/
@@ -41,7 +41,7 @@ project-root/
 │       └── main.py             # FastAPI backend: GET endpoint to fetch the first n records from DynamoDB
 │
 ├── tests/
-│   └── test_dynamodb.py        # (Optional) Script to test querying the "fire_damage" table
+│   └── test_api.py             # (Optional) Script to test querying the "fire_damage" table
 │
 └── README.md                   # This document
 ```
