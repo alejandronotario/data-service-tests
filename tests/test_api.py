@@ -1,8 +1,9 @@
-
 from fastapi.testclient import TestClient
+
 from src.api.main_test import app
 
 client = TestClient(app)
+
 
 def test_get_records_default_limit():
     # Request the default number of records (limit=5)
@@ -16,6 +17,7 @@ def test_get_records_default_limit():
     for record in data:
         assert "OBJECTID" in record
         assert "DAMAGE" in record
+
 
 def test_get_records_custom_limit():
     # Request 3 records explicitly

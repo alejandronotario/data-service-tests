@@ -1,6 +1,7 @@
-from fastapi import FastAPI, HTTPException, Query
-import boto3
 import os
+
+import boto3
+from fastapi import FastAPI, HTTPException, Query
 
 app = FastAPI()
 
@@ -14,12 +15,15 @@ dynamodb = boto3.resource(
     region_name=AWS_REGION,
     endpoint_url=ENDPOINT_URL,
     aws_access_key_id="test",
-    aws_secret_access_key="test"
+    aws_secret_access_key="test",
 )
 table = dynamodb.Table("fire_damage")
 
+
 @app.get("/records", response_model=list)
-def get_records(limit: int = Query(5, description="Number of records to retrieve")):
+def get_records(
+    limit: int = Query(5, description="Number of records to retrieve")
+):
     try:
         response = table.scan(Limit=limit)
         items = response.get("Items", [])

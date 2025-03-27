@@ -1,5 +1,6 @@
+from typing import Dict, List
+
 from fastapi import FastAPI, HTTPException, Query
-from typing import List, Dict
 
 app = FastAPI(title="Test API", version="1.0-test")
 
@@ -46,11 +47,14 @@ test_data = [
         "STREETNUMBER": "103",
         "STREETNAME": "Sixth St",
         "CITY": "Testville",
-    }
+    },
 ]
 
+
 @app.get("/records", response_model=List[Dict])
-def get_records(limit: int = Query(5, description="Number of records to retrieve")):
+def get_records(
+    limit: int = Query(5, description="Number of records to retrieve")
+):
     """
     Retrieves the first `limit` records from the test data.
     """
@@ -59,6 +63,10 @@ def get_records(limit: int = Query(5, description="Number of records to retrieve
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("src.api.main_test:app", host="0.0.0.0", port=8000, reload=True)
+
+    uvicorn.run(
+        "src.api.main_test:app", host="0.0.0.0", port=8000, reload=True
+    )
